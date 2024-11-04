@@ -3,39 +3,41 @@
 	ViewData["Title"] = "Home Page";
 
 }
-
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>#</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Gendar</th>
-			<th>Bird Date</th>
-			<th>Final Mark</th>
-			<th></th>
-		</tr>
-	</thead>
-		<tbody>
+<div class="container min-vh-100 d-flex flex-column align-items-center gap-2 py-5">
+	<table class="table table-striped shadow rounded-2">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Gendar</th>
+				<th>Bird Date</th>
+				<th>Final Mark</th>
+				<th></th>
+			</tr>
+		</thead>
+			<tbody>
 		
-			@foreach(Student student in @Model)
-			{
-				<tr>
-					<td>@student.Id</td>
-					<td>@student.FirstName</td>
-					<td>@student.LastName</td>
-					<td>@student.Gender</td>
-					<td>@student.BirdDate.ToShortDateString()</td>
-					<td>@student.FinalMark</td>
-					<td> 
-						<form asp-action="Delete" asp-controller="Home" method="post">
+				@foreach(Student student in @Model)
+				{
+					<tr>
+						<td>@student.Id</td>
+						<td>@student.FirstName</td>
+						<td>@student.LastName</td>
+						<td>@student.Gender</td>
+						<td>@student.BirdDate.ToShortDateString()</td>
+						<td>@student.FinalMark</td>
+						<td> 
+							<form asp-action="Delete" asp-controller="Home" method="post">
 						
-							@Html.Hidden("id",student.Id)
-						<button>Delete</button>
-						</form>
-					</td>
-				</tr>
-			}
-		</tbody>
-</table>
+								@Html.Hidden("id",student.Id)
+							<button onclick="return confirm('Are you sure you wanna remove this student ?')">Delete</button>
+							</form>
+						</td>
+					</tr>
+				}
+			</tbody>
+	</table>
+
+</div>
 
